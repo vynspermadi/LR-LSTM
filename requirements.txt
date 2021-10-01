@@ -1,6 +1,6 @@
 flask
 scikit-learn
-numpy
+numpy = 1.19.2
 pandas
 datetime
 keras
