@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <title>Aplikasi Prediksi Harga 10 Komoditas Utama Indonesia</title>
+    </head>
+    <body
+        class="
+            flex flex-col
+            justify-between
+            item-center
+            p-8
+            min-h-screen
+            bg-gradient-to-r
+            from-green-400
+            to-blue-500
+            text-gray-800
+            md:flex-row
+        "
+    >
+        <main class="bg-white p-16 rounded-lg">
+            <h1 class="text-3xl font-bold mb-8">
+                Prediksi Harga:
+            </h1>
+
+            <form
+                action="{{ url_for('predict') }}"
+                method="post"
+                class="flex flex-col"
+            >
+                <label for="NamaKomoditas" class="mt-4 mb-2"
+                    >Nama Komoditas:</label
+                >
+                <select
+                    name="NamaKomoditas"
+                    id="NamaKomoditas"
+                    class="p-4 bg-gray-100 rounded-md"
+                >
+                    <option value="Ayam">Ayam</option>
+                    <option value="Bawang Merah">Bawang Merah</option>
+                    <option value="Bawang Putih">Bawang Putih</option>
+                    <option value="Beras">Beras</option>
+                    <option value="Cabai Merah">Cabai Merah</option>
+                    <option value="Cabai Rawit">Cabai Rawit</option>
+                    <option value="Gula">Gula</option>
+                    <option value="Minyak">Minyak</option>
+                    <option value="Daging Sapi">Daging Sapi</option>
+                    <option value="Telur">Telur</option>
+                </select>
+
+                <label for="Tanggal" class="mb-2">Tanggal</label>
+                <input
+                    type="text"
+                    name="Tanggal"
+                    placeholder="format: YYYY-MM-DD"
+                    required="required"
+                    class="p-4 bg-gray-100 rounded-md"
+                />
+
+
+                <button
+                    type="submit"
+                    class="
+                        flex
+                        justify-center
+                        align-center
+                        mt-8
+                        p-4
+                        bg-gradient-to-r
+                        from-green-400
+                        to-blue-500
+                        text-white
+                        rounded-md
+                    "
+                >
+                    PREDIKSI
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-arrow-right ml-4"
+                    >
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </main>
+        <section class="mt-8 h-full flex-auto rounded-lg md:mt-0 md:ml-8">
+            <div class="bg-white p-16 rounded-lg">
+                <h1 class="text-2xl mb-8">
+                    <br>
+                    <br>
+                    Estimasi harga <b>{{ NamaKomoditas }}</b> pada Tanggal <b>{{ Tanggal }} </b>
+                    <br>
+                </h1>
+                <h1 class="text-3xl mb-8">
+                    <br>
+                    Dengan model <b>Regresi Linear:</b>
+                </h1>
+                <h2 class="text-5xl font-bold">IDR {{ pred_harga }}
+                </h2>
+                <h1 class="text-3xl mb-8">
+                    <br>
+                    <br>
+                    <br>
+                    Dengan model <b>Long short-term memory (LSTM):</b>
+                </h1>
+                <h2 class="text-5xl font-bold">IDR {{ pred_harga_LSTM }}
+                </h2>
+                <br>
+                <br>
+            </div>
+            <div class="flex justify-around bg-white p-16 rounded-lg mt-8">
+                <img
+                    class="h-24 md:h-28"
+                    src="https://digitalent.kominfo.go.id/assets/@images/logo.png"
+                    alt="logo-dts"
+                />
+                <img
+                    class="h-24 md:h-28"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg/604px-Logo_of_Ministry_of_Communication_and_Information_Technology_of_the_Republic_of_Indonesia.svg.png"
+                    alt="logo-kominfo"
+                />
+            </div>
+        </section>
+    </body>
+</html>
