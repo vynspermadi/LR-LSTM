@@ -1,0 +1,8 @@
+flask
+scikit-learn
+numpy
+pandas
+datetime
+keras
+tensorflow-cpu
+sklearn
